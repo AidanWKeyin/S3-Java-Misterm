@@ -1,5 +1,6 @@
 package medicationtracking;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class EmptyMenu {
@@ -8,8 +9,8 @@ public class EmptyMenu {
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
 
-        while (!exit){
-            System.out.println("=====Welcome To The Pharmacy Med Tracking System=====");
+        while (!exit) {
+            System.out.println("===== Welcome To The Pharmacy Med Tracking System =====");
             System.out.println("What would you like to do? ");
             System.out.println("1: Add A New Patient");
             System.out.println("2: Add A New Doctor");
@@ -27,13 +28,47 @@ public class EmptyMenu {
 
             switch (option) {
                 case 1:
-                    // TODO: implement add patient
+                    System.out.print("Enter patient ID: ");
+                    int pid = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter patient name: ");
+                    String pname = scanner.nextLine();
+                    System.out.print("Enter age: ");
+                    int page = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter phone: ");
+                    String pphone = scanner.nextLine();
+                    medicationTracking.addPatient(new Patient(pid, pname, page, pphone));
                     break;
                 case 2:
-                    // TODO: implement add doctor
+                    System.out.print("Enter doctor ID: ");
+                    int did = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter doctor name: ");
+                    String dname = scanner.nextLine();
+                    System.out.print("Enter age: ");
+                    int dage = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter phone: ");
+                    String dphone = scanner.nextLine();
+                    System.out.print("Enter specialization: ");
+                    String spec = scanner.nextLine();
+                    medicationTracking.addDoctor(new Doctor(did, dname, dage, dphone, spec));
                     break;
                 case 3:
-                    // TODO: implement add medication
+                    System.out.print("Enter med ID: ");
+                    int mid = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter med name: ");
+                    String mname = scanner.nextLine();
+                    System.out.print("Enter dose: ");
+                    String dose = scanner.nextLine();
+                    System.out.print("Enter quantity: ");
+                    int qty = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter expiry (YYYY-MM-DD): ");
+                    LocalDate exp = LocalDate.parse(scanner.nextLine());
+                    medicationTracking.addMedication(new Medication(mid, mname, dose, qty, exp));
                     break;
                 case 4:
                     medicationTracking.generateReport();
@@ -42,7 +77,25 @@ public class EmptyMenu {
                     medicationTracking.checkExpiredMedications();
                     break;
                 case 6:
-                    // TODO: implement process prescription
+                    System.out.print("Enter prescription ID: ");
+                    int presId = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter doctor name: ");
+                    String drName = scanner.nextLine();
+                    System.out.print("Enter patient name: ");
+                    String ptName = scanner.nextLine();
+                    System.out.print("Enter medication name: ");
+                    String medName = scanner.nextLine();
+                    Doctor doctor = medicationTracking.findDoctorByName(drName);
+                    Patient patient = medicationTracking.findPatientByName(ptName);
+                    Medication medication = medicationTracking.findMedicationByName(medName);
+                    if (doctor != null && patient != null && medication != null) {
+                        Prescription p = new Prescription(presId, doctor, patient, medication);
+                        medicationTracking.acceptPrescription(p);
+                        System.out.println("Prescription added successfully.");
+                    } else {
+                        System.out.println("Doctor, patient or medication not found.");
+                    }
                     break;
                 case 7:
                     System.out.print("Enter doctor name: ");
@@ -51,6 +104,7 @@ public class EmptyMenu {
                     break;
                 case 8:
                     medicationTracking.restockMedications();
+                    System.out.println("All medications restocked.");
                     break;
                 case 9:
                     System.out.print("Enter patient name: ");

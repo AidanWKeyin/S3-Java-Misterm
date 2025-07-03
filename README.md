@@ -33,4 +33,5 @@ The code is organized into the `medicationtracking` package and includes the fol
    ```bash
    javac medicationtracking/*.java
 
-   
+   java medicationtracking.EmptyMenu
+    

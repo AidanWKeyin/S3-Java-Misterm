@@ -8,6 +8,34 @@ public class MedicationTrackingSystem {
     private List<Medication> medications = new ArrayList<>();
     private List<Prescription> prescriptions = new ArrayList<>();
 
+
+    public Doctor findDoctorByName(String name) {
+    for (Doctor d : doctors) {
+        if (d.name.equalsIgnoreCase(name)) {
+            return d;
+        }
+    }
+    return null;
+    }   
+
+    public Patient findPatientByName(String name) {
+    for (Patient p : patients) {
+        if (p.name.equalsIgnoreCase(name)) {
+            return p;
+        }
+    }
+    return null;
+    }
+
+    public Medication findMedicationByName(String name) {
+    for (Medication m : medications) {
+        if (m.getName().equalsIgnoreCase(name)) {
+            return m;
+        }
+    }
+    return null;
+    }
+
     public void addPatient(Patient p) {
         patients.add(p);
     }
