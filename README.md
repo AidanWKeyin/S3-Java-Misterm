@@ -1,4 +1,4 @@
-# S3-Java-Misterm  
+# S3-Java-Midterm  
 
 # 💊 Pharmacy Medication Tracking System
 
