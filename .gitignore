@@ -1,0 +1,15 @@
+# Ignore all compiled class files
+*.class
+
+# Ignore IntelliJ IDEA project files (optional, but useful)
+.idea/
+*.iml
+
+# Ignore macOS system files (optional)
+.DS_Store
+
+# Ignore any bin or out directories commonly used for compiled files
+/bin/
+/out/
+
+
